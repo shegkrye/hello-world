@@ -12,7 +12,7 @@ try:
     browser = webdriver.Chrome()
        
     browser.get(link)
-    # говорим Selenium проверять в течение 12 секунд, пока кнопка не станет кликабельной
+    
     WebDriverWait(browser, 12).until(EC.text_to_be_present_in_element((By.ID, "price"), "$100"))
     browser.execute_script("window.scrollBy(0, 100);")
     button = browser.find_element_by_xpath("//button[contains(text(),'Book')]")
@@ -24,13 +24,13 @@ try:
     input4.send_keys(y)
     input2 = browser.find_element_by_xpath("//button[@type='submit']")
     input2.click()
-    #Код ниже копирует ответ сайта и выводит его в сообщение bush
+    
     message = browser.find_element_by_id("verify_message")
 
     assert "successful" in message.text
 
 finally:
-    # ожидание чтобы визуально оценить результаты прохождения скрипта
+    
     time.sleep(10)
-    # закрываем браузер после всех манипуляций
+    
     browser.quit()
